@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Navigate, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
 import MoviesContextProvider from "./contexts/moviesContext";
@@ -9,6 +9,7 @@ import MoviePage from "./pages/movieDetailsPage";
 import UpcomingMoviesPage from './pages/upcomingMoviesPage'
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; 
 import MovieReviewPage from "./pages/movieReviewPage";
+import AddMovieReviewPage from './pages/addMovieReviewPage'
 import SiteHeader from './components/siteHeader';
 
 
@@ -30,6 +31,7 @@ const App = () => {
       <MoviesContextProvider>  
         <Routes>
           <Route path="/movies/upcoming" element={<UpcomingMoviesPage/>} />
+          <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
           <Route path="/reviews/:id" element={<MovieReviewPage/>} />
           <Route path="/movies/favourites" element={<FavouriteMoviesPage/>}
           />
