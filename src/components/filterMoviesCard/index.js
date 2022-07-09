@@ -42,11 +42,11 @@ export default function FilterMoviesCard(props) {
       });
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  
   const handleChange = (e, type, value) => {
     e.preventDefault()
-    // Completed later
-  };
+    props.onUserInput(type, value)
+  }
 
   const handleTextChange = e => {
     handleChange(e, "title", e.target.value)
