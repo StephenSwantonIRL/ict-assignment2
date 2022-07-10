@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
+import PlaylistAddCheckCircleIcon from '@mui/icons-material/PlaylistAddCheckCircle';
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
@@ -25,7 +26,7 @@ const useStyles = makeStyles({
 
 export default function MovieCard({ movie, action }) {
   const classes = useStyles();
-  const { favourites, addToFavourites } = useContext(MoviesContext);
+  const { favourites, addToFavourites, watchList } = useContext(MoviesContext);
 
   if (favourites.find((id) => id === movie.id)) {
     movie.favourite = true;
@@ -33,22 +34,36 @@ export default function MovieCard({ movie, action }) {
     movie.favourite = false
   }
 
+  if (watchList.find((id) => id === movie.id)) {
+    movie.watchList = true;
+  } else {
+    movie.watchList = false
+  }
+
+
   const handleAddToFavourite = (e) => {
     e.preventDefault();
     addToFavourites(movie);
   };
+  let icon 
+
+  if(movie.favourite) {
+    icon =(<Avatar className={classes.avatar}>
+       <FavoriteIcon />
+     </Avatar>)
+   } else if (movie.watchList) {
+     icon =(<Avatar className={classes.avatar}>
+       <PlaylistAddCheckCircleIcon />
+     </Avatar>)
+   } else {
+     icon = null
+   }
 
   return (
     <Card className={classes.card}>
       <CardHeader
         className={classes.header}
-        avatar={
-          movie.favourite ? (
-            <Avatar className={classes.avatar}>
-              <FavoriteIcon />
-            </Avatar>
-          ) : null
-        }
+        avatar={icon}
         title={
           <Typography variant="h5" component="p">
             {movie.title}{" "}
