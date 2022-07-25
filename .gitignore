@@ -26,3 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 /.vscode
 .eslintcache
+.idea/ict-assignment2.iml
+.idea/modules.xml
+.idea/vcs.xml
