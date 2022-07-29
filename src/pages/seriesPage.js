@@ -1,5 +1,5 @@
 import React from "react";
-import PageTemplate from "../components/templateMovieListPage";
+import PageTemplate from "../components/seriesListPage";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 import { useQuery } from 'react-query'
 import Spinner from '../components/spinner'
@@ -19,9 +19,16 @@ const SeriesPage = (props) => {
   const series = data.results;
 
   return (
-    <>
-      {JSON.stringify(series)}
-    </>
+      <>
+    <PageTemplate
+    title="Discover Movies"
+    series={series}
+    action={(series) => {
+
+    }}
+  />    
+
+      </>
   );
 };
 
