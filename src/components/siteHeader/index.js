@@ -3,14 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-
-import MenuIcon from "@material-ui/icons/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import { useNavigate, NavLink } from "react-router-dom";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import MenuButton from "../menuButton";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -34,26 +27,20 @@ const useStyles = makeStyles((theme) => ({
 
 const SiteHeader = () => {
   const classes = useStyles();
-  const navigate = useNavigate()
-  const [anchorEl, setAnchorEl] = useState(null);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const open = Boolean(anchorEl);
-  const menuOptions = [
-    { label: "Home", path: "/" },
-    { label: "Favourites", path: "/movies/favourites" },
-    { label: "Upcoming", path: "/movies/upcoming" },
-    { label: "Must Watch", path: "/movies/mustwatch" },
-  ];
-
-  const handleMenuSelect = (pageURL) => {
-    navigate(pageURL);
-  };
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const siteMenu = [
+    { toplevel: "TV",  links: [{url: "/tv", label:"Explore TV"}]},
+    { toplevel: "Movies",  links: [
+        { url: "/movies", label:"Out Now"},
+        { url: "/movies/upcoming", label: "Upcoming" },
+        { url: "/movies/mustwatch", label: "Must Watch"},
+      ]},
+    { toplevel: "People",  links: [{url: "/people", label:"Explore People"}]},
+    { toplevel: "My Lists",  links: [
+        { url: "/lists", label:"List 1"},
+        { url: "/movies/favourites", label: "Favourites",  },
+      ]}
+      ]
 
   return ( 
     <>
@@ -64,61 +51,11 @@ const SiteHeader = () => {
             TMDB Client
           </Typography>
           <Typography variant="h6" className={classes.title}>
-            All you ever wanted to know about Movies!
+            All you ever wanted to know about Movies, TV and the people who make them!
           </Typography>
-          {isMobile ? (
-            <>
-              <IconButton
-                aria-label="menu"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={open}
-                onClose={() => setAnchorEl(null)}
-              >
-                {menuOptions.map((opt) => (
-                  <MenuItem
-                    key={opt.label}
-                    onClick={() => handleMenuSelect(opt.path)}
-                  >
-                    {opt.label}
-                  </MenuItem>
-                ))}
-              </Menu>
-            </>
-          ) : (
-            <>
-              {menuOptions.map((opt) => (
-                <NavLink
-                  key={opt.label}
-                  to={opt.path}
-                  className={({ isActive }) =>
-                  isActive ? classes.activeLink : classes.inactiveLink
-                }
-                  color="inherit"
-                  // onClick={() => handleMenuSelect(opt.path)}
-                >
-                  {opt.label}
-                </NavLink> 
+              {siteMenu.map((option) => (
+                  <MenuButton key={option.toplevel} toplevel={option.toplevel} links={option.links}/>
               ))}
-            </>
-          )}
         </Toolbar>
       </AppBar>
     </>

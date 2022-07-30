@@ -1,7 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
-import MovieHeader from "../headerMovie";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageList from "@material-ui/core/ImageList";
