@@ -1,32 +1,38 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import MovieDetails from "../components/movieDetails";
+import SimilarMovies from "../components/similarMovies"
 import PageTemplate from "../components/templateMoviePage";
-import { getMovie } from '../api/tmdb-api'
+import { getMovie, getSimilarMovies } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
-  const { data: movie, error, isLoading, isError } = useQuery(
+  const movieQuery = useQuery(
     ["movie", { id: id }],
     getMovie
   );
+  const similarQuery= useQuery(
+      ["similar", { id: id }],
+      getSimilarMovies
+  );
 
-  if (isLoading) {
+  if (movieQuery.isLoading || similarQuery.isLoading) {
     return <Spinner />;
   }
 
-  if (isError) {
-    return <h1>{error.message}</h1>;
+  if (movieQuery.isError ) {
+    return <h1>{movieQuery.error.message}</h1>;
   }
-
+  const similarMovies = (similarQuery.data) ? similarQuery.data['results'] : null;
   return (
     <>
-      {movie ? (
+      {movieQuery.data ? (
         <>
-          <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
+          <PageTemplate movie={movieQuery.data}>
+            <MovieDetails movie={movieQuery.data} />
+            <SimilarMovies movies={similarMovies} action={()=>{}} />
           </PageTemplate>
         </>
       ) : (
