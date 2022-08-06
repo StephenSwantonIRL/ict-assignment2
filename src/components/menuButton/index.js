@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../styles/styles.css'
+import { Link } from "react-router-dom"
 
 export default function MenuButton({toplevel, links} ) {
 
@@ -8,7 +9,7 @@ export default function MenuButton({toplevel, links} ) {
             <button className="dropbtn">{toplevel}</button>
             <div className="dropdownC">
                 {links.map((link) => (
-                <a key={link.url} href={link.url}>{link.label}</a>
+                    <Link key={link.url} to={link.url}>{link.label}</Link>
                     ))}
             </div>
         </div>
