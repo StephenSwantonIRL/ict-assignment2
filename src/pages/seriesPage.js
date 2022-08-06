@@ -1,6 +1,5 @@
 import React from "react";
 import PageTemplate from "../components/seriesListPage";
-import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 import { useQuery } from 'react-query'
 import Spinner from '../components/spinner'
 import {getSeries} from '../api/tmdb-api'
@@ -21,7 +20,7 @@ const SeriesPage = (props) => {
   return (
       <>
     <PageTemplate
-    title="Discover Movies"
+    title="Discover TV Series"
     series={series}
     action={(series) => {
 

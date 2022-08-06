@@ -35,7 +35,7 @@ const SiteHeader = () => {
         { url: "/movies/upcoming", label: "Upcoming" },
         { url: "/movies/mustwatch", label: "Must Watch"},
       ]},
-    { toplevel: "People",  links: [{url: "/people", label:"Explore People"}]},
+    { toplevel: "Actors",  links: [{url: "/actors", label:"Popular"}]},
     { toplevel: "My Lists",  links: [
         { url: "/lists", label:"List 1"},
         { url: "/movies/favourites", label: "Favourites",  },
