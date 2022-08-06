@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../headerMovieList";
 import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
 import Drawer from "@material-ui/core/Drawer";
 import { makeStyles } from "@material-ui/core/styles";
-import SeriesList from "../seriesList";
 import ActorList from "../actorList";
 
 const useStyles = makeStyles((theme) =>  ({
