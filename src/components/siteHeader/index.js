@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../../contexts/authContext"
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuButton from "../menuButton";
+import {useEffect} from "react";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -27,7 +29,14 @@ const useStyles = makeStyles((theme) => ({
 
 const SiteHeader = () => {
   const classes = useStyles();
-
+  const context =  useContext(AuthContext)
+  let user
+  if(!context?.user){
+    user = { firstName: "" }
+  } else {
+    user = context.user;
+  }
+  console.log(user);
   const siteMenu = [
     { toplevel: "TV",  links: [{url: "/tv", label:"Explore TV"}]},
     { toplevel: "Movies",  links: [
@@ -48,7 +57,7 @@ const SiteHeader = () => {
       position="fixed" elevation={0} color='primary'> 
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
-            TMDB Client
+            TMDB Client {user.firstName}
           </Typography>
           <Typography variant="h6" className={classes.title}>
             All you ever wanted to know about Movies, TV and the people who make them!

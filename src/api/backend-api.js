@@ -20,14 +20,17 @@ export class BackendAPI {
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
             if (response.data.success) {
                 const userDetails = await axios.post(`${this.backendUrl}/api/users/find`, {email: user.email});
-                localStorage.currentUser = JSON.stringify({
-                    firstName: userDetails.data.firstName,
-                    lastName: userDetails.data.lastName,
-                    email: userDetails.data.email,
-                    _id: userDetails.data._id,
-                    token: response.data.token,
-                });
-                return true;
+                const userToStore = {
+                    data: {
+                        firstName: userDetails.data.firstName,
+                        lastName: userDetails.data.lastName,
+                        email: userDetails.data.email,
+                        _id: userDetails.data._id,
+                        token: response.data.token,
+                    }
+                }
+                localStorage.currentUser = JSON.stringify(userToStore);
+                return userToStore;
             }
             return false;
         } catch (error) {

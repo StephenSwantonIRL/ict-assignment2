@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -8,6 +8,8 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Header from "../headerMovieList";
 import { BackendAPI } from "../../api/backend-api";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../contexts/authContext"
 
 const backend = new BackendAPI("https://movie-app-backend.glitch.me");
 
@@ -42,16 +44,23 @@ const CreateUserForm = () => {
     const classes = useStyles();
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
-
+    let { user, storeUser, getUser } = useContext(AuthContext);
     const onSubmit = async (data) => {
-        const user = {
+        const createdUser = {
             email: data.email,
             password: data.password,
         }
         await backend.createUser(data).then(async (data)=> {
-            await backend.authenticate(user)
-        }).then((x) => navigate("/"))
+            const signedInUser = await backend.authenticate(createdUser);
+            storeUser(signedInUser.data);
+
+        }).then((x) => {
+            console.log(getUser());
+            navigate("/");
+    })
     }
+
+
     console.log(errors);
 
     return (

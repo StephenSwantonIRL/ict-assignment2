@@ -4,11 +4,12 @@ import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 import { useQuery } from 'react-query'
 import Spinner from '../components/spinner'
 import {getMovies} from '../api/tmdb-api'
-
+import { useContext } from "react";
+import {AuthContext} from "../contexts/authContext"
 
 const HomePage = (props) => {
   const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
-
+  const { user } = useContext(AuthContext)
   if (isLoading) {
     return <Spinner />
   }
