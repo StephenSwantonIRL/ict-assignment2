@@ -19,6 +19,7 @@ import ActorPage from "./pages/actorPage";
 import ActorDetailsPage from "./pages/actorDetailsPage";
 import SeriesContextProvider from "./contexts/seriesContext";
 import CreateUserForm from "./components/createUserForm";
+import LoginForm from "./components/loginForm";
 
 
 const queryClient = new QueryClient({
@@ -40,6 +41,7 @@ const App = () => {
         <MoviesContextProvider>
           <SeriesContextProvider>
             <Routes>
+              <Route path="/login" element={<LoginForm/>} />
               <Route path="/signup" element={<CreateUserForm/>} />
               <Route path="/tv" element={<SeriesPage/>} />
               <Route path="/tv/:id" element={<SeriesDetailsPage/>} />
