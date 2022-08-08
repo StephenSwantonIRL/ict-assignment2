@@ -7,10 +7,9 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Header from "../headerMovieList";
-import { BackendAPI } from "../../api/backend-api";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/authContext"
-
+import { BackendAPI } from "../../api/backend-api";
 const backend = new BackendAPI("https://movie-app-backend.glitch.me");
 
 const useStyles = makeStyles((theme) => ({
