@@ -36,7 +36,6 @@ const SiteHeader = () => {
   } else {
     user = context.user;
   }
-  console.log(user);
   const siteMenu = [
     { toplevel: "TV",  links: [{url: "/tv", label:"Explore TV"}]},
     { toplevel: "Movies",  links: [

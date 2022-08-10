@@ -29,3 +29,4 @@ yarn-error.log*
 .idea/ict-assignment2.iml
 .idea/modules.xml
 .idea/vcs.xml
+src/components/New folder/index.js
