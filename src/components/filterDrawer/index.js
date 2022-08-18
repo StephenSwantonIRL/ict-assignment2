@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FilterCard from "../filterMoviesCard";
+import FilterCard from "../filterCard";
 import Fab from "@material-ui/core/Fab";
 import Drawer from "@material-ui/core/Drawer";
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) =>  ({
   },
 }));
 
-function FilterDrawer({ titleFilter, genreFilter, handleChange }) {
+function FilterDrawer({ titleFilter, genreFilter, handleChange, sort }) {
   const classes = useStyles();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -41,6 +41,7 @@ function FilterDrawer({ titleFilter, genreFilter, handleChange }) {
           onUserInput={handleChange}
           titleFilter={titleFilter}
           genreFilter={genreFilter}
+          sort={sort}
         />
       </Drawer>
     </>    

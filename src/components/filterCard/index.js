@@ -12,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import SortOptions from "../sortOptions"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FilterMoviesCard(props) {
+export default function FilterCard(props) {
   const classes = useStyles();
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
 
@@ -97,6 +98,7 @@ export default function FilterMoviesCard(props) {
             <SearchIcon fontSize="large" />
             Sort the movies.
           </Typography>
+          <SortOptions sort={props.sort} />
         </CardContent>
       </Card>
       </>
