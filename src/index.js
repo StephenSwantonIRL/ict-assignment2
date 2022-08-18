@@ -21,6 +21,7 @@ import SeriesContextProvider from "./contexts/seriesContext";
 import CreateUserForm from "./components/createUserForm";
 import LoginForm from "./components/loginForm";
 import ProtectedRoute from "./components/protectedRoute";
+import FantasyMovieForm from "./components/fantasyMovieForm";
 
 
 const queryClient = new QueryClient({
@@ -42,6 +43,7 @@ const App = () => {
         <MoviesContextProvider>
           <SeriesContextProvider>
             <Routes>
+              <Route path="/fantasy" element={<FantasyMovieForm/>} />
               <Route path="/login" element={<LoginForm/>} />
               <Route path="/signup" element={<CreateUserForm/>} />
               <Route path="/tv" element={<SeriesPage/>} />

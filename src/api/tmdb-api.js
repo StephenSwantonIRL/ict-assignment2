@@ -90,6 +90,23 @@ export const getPerson = (args) => {
         });
 };
 
+export const searchPerson = (query) => {
+    const uriEncodedQuery = encodeURI(query)
+    return fetch(
+        `https://api.themoviedb.org/3/search/person?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&query=${uriEncodedQuery}&page=1&include_adult=false`
+    ).then((response) => {
+        if (!response.ok) {
+            throw new Error(response.json().message);
+        }
+        return response.json();
+    })
+        .catch((error) => {
+            throw error
+        });
+};
+
+
+
 
 export const getSeriesDetails = (args) => {
 // console.log(args)

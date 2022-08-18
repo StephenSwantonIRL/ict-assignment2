@@ -51,6 +51,13 @@ export class BackendAPI {
         return res.data;
     }
 
+    async createMovie(movie) {
+        const res = await axios.post(`${this.backendUrl}/api/movies`, movie);
+        return res.data;
+    }
+
+
+
     async getUser(id) {
         const res = await axios.get(`${this.backendUrl}/api/users/${id}`);
         return res.data;
