@@ -50,8 +50,8 @@ export default function SortOptions(props) {
 
     const handleChange = (e) => {
         setSortProperty(e.target.value);
-        props.sort(sortType, sortProperty);
     };
+
 
 
     return (

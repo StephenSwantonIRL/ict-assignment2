@@ -6,10 +6,15 @@ import {getGenres} from "../../api/tmdb-api";
 import Spinner from "../spinner";
 import {BackendAPI} from "../../api/backend-api";
 import {useNavigate} from "react-router-dom";
-import ActorList from "../actorList";
+import ContentList from "../contentList";
 import {searchPerson} from "../../api/tmdb-api";
+import Grid from "@material-ui/core/Grid";
+import Header from "../headerMovieList";
+import Box from "@material-ui/core/Box"
+import FantasyActorCard from "../fantasyActorCard"
+import Button from "@material-ui/core/Button";
 import _ from "lodash";
-
+import RoleDialog from "../roleDialog"
 
 const backend = new BackendAPI("https://movie-app-backend.glitch.me")
 
@@ -48,10 +53,13 @@ const FantasyMovieForm = () => {
     const [cast, setCast] = useState([]);
     const [displayedActors, setDisplayedActors] = useState([]);
     const onSubmit = async (data) => {
-        data.cast = cast;
-        await backend.createMovie(data).then((x) => {
-            navigate("/");
-        })
+        data.cast = [];
+        cast.forEach((a) => data.cast.push({id: a.id, name: a.name, role: a.role || null}));
+        await backend.createMovie(data)
+            .then((x) => {
+                (x._id) ? navigate('/') : console.log("error");
+
+            })
     }
     if (isLoading) {
         return <Spinner/>;
@@ -66,30 +74,59 @@ const FantasyMovieForm = () => {
         setDisplayedActors(sort);
     }
 
+    function addCastRole(){
+        return ( <RoleDialog actorName={"Chris"} /> )
+    }
+    function addToCast(actor) {
+
+        if (!cast.find((a) => a.id === actor.id)) {
+            console.log("this ran")
+            let newCast = [...cast, actor];
+            setCast(newCast);
+        }
+        setDisplayedActors([]);
+    }
+
+    function deleteFromCast(actorId) {
+        const clonedCast = _.cloneDeep(cast);
+        const index = clonedCast.findIndex((a) => a.id === actorId);
+        clonedCast.splice(index, 1);
+        setCast(clonedCast);
+    }
 
     return (
         <>
-            <div>
+            <Grid container className={classes.root}>
+                <Grid item xs={12}>
+                    <Header title={"SignUp"}/>
+                </Grid>
+                <Grid item container xs={12} spacing={5}>
+                    <Box component="div" className={classes.root}>
+                        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+                            <input type="text" placeholder="Title" {...register("title", {required: true})} /> <br/>
+                            <select {...register("genre", {required: true})}>
 
-            </div>
-            <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder="Title" {...register("Title", {required: true})} /> <br/>
-                <select {...register("Genre", {required: true})}>
-
-                    {genres.map(genre => (
-                        <option key={genre.id} value={genre.id}>{genre.name}</option>
-                    ))}
-                </select>
-                <textarea {...register("Plot", {})} /><br/>
-                <input type="datetime" placeholder="Release Date" {...register("Release Date", {
-                    required: true,
-                    maxLength: 80
-                })} />
-                <input type="search" placeholder="Cast" onChange={(e) => search(e.target.value)}/>
-                <ActorList actors={displayedActors} action={() => {
-                }}/>
-                <input type="submit"/>
-            </form>
+                                {genres.map(genre => (
+                                    <option key={genre.id} value={genre.id}>{genre.name}</option>
+                                ))}
+                            </select>
+                            <textarea {...register("plot", {})} /><br/>
+                            <input type="datetime" placeholder="Release Date" {...register("releaseDate", {
+                                required: true,
+                                maxLength: 80
+                            })} />
+                            <input type="search" placeholder="Cast" onChange={(e) => search(e.target.value)}/>
+                            <input type="submit"/>
+                        </form>
+                    </Box>
+                </Grid>
+                <div>Current Cast</div>
+                <div>{cast.map(actor => (<p key={actor.id}>{actor.name} <Button key={actor.id}
+                                                                                onClick={() => deleteFromCast(actor.id)}> Remove</Button>
+                </p>))}</div>
+                <ContentList content={displayedActors} action={addToCast}
+                             cardType={(id, m, action) => (<FantasyActorCard key={id} actor={m} action={action}/>)}/>
+            </Grid>
         </>
     );
 }
