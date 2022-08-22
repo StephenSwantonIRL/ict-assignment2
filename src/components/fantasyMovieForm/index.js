@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext } from 'react';
 import {useForm} from 'react-hook-form';
 import {makeStyles} from "@material-ui/core/styles";
 import {useQuery} from "react-query";
@@ -14,7 +14,7 @@ import Box from "@material-ui/core/Box"
 import FantasyActorCard from "../fantasyActorCard"
 import Button from "@material-ui/core/Button";
 import _ from "lodash";
-import RoleDialog from "../roleDialog"
+import {AuthContext} from "../../contexts/authContext";
 
 const backend = new BackendAPI("https://movie-app-backend.glitch.me")
 
@@ -49,12 +49,17 @@ const FantasyMovieForm = () => {
     const classes = useStyles();
     const navigate = useNavigate();
     const {register, handleSubmit, formState: {errors}} = useForm();
+    let { user, getUser } = useContext(AuthContext);
+    console.log(user);
     const {data, error, isLoading, isError} = useQuery("genres", getGenres);
+
     const [cast, setCast] = useState([]);
     const [displayedActors, setDisplayedActors] = useState([]);
     const onSubmit = async (data) => {
         data.cast = [];
         cast.forEach((a) => data.cast.push({id: a.id, name: a.name, role: a.role || null}));
+        data.createdBy = user._id;
+        console.log(data);
         await backend.createMovie(data)
             .then((x) => {
                 (x._id) ? navigate('/') : console.log("error");
@@ -74,9 +79,6 @@ const FantasyMovieForm = () => {
         setDisplayedActors(sort);
     }
 
-    function addCastRole(){
-        return ( <RoleDialog actorName={"Chris"} /> )
-    }
     function addToCast(actor) {
 
         if (!cast.find((a) => a.id === actor.id)) {

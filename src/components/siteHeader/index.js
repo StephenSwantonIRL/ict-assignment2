@@ -37,6 +37,10 @@ const SiteHeader = () => {
     user = context.user;
   }
   const siteMenu = [
+    { toplevel: "Fantasy Movies",  links: [
+        {url: "/fantasy", label:"Create"},
+        {url: "/list", label:"View"},
+      ]},
     { toplevel: "TV",  links: [{url: "/tv", label:"Explore TV"}]},
     { toplevel: "Movies",  links: [
         { url: "/movies", label:"Out Now"},

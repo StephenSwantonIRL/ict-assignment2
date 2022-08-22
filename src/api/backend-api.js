@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export class BackendAPI {
-    backendUrl = ""
+    backendUrl = "https://movie-app-backend.glitch.me"
 
     constructor(backendUrl) {
         this.backendUrl = backendUrl;
@@ -56,6 +56,16 @@ export class BackendAPI {
         return res.data;
     }
 
+
+    async getFantasyMovie(id) {
+        const res = await axios.get(`${this.backendUrl}/api/fantasyMovie/${id}`);
+        return res.data;
+    }
+
+    async getFantasyMovies(userId) {
+        const res = await axios.get(`${this.backendUrl}/api/fantasyMovie/all/${userId}`);
+        return res.data;
+    }
 
 
     async getUser(id) {
