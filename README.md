@@ -67,13 +67,27 @@ The following are new routes created in addition to the routes existing in the A
 
 e.g.
 >Lists movies from the Discover endpoint. Filtering on title and genre attributes is supported.
+> 
 
-![][d1]
+![The Log In Page](public/readme/image1.png) 
 
-![][d2]
+![](public/readme/image2.png)
 
->Shows detailed information on a specific movie
+![](public/readme/image3.png)
 
+![](public/readme/image4.png)
+
+![](public/readme/image5.png)
+
+![](public/readme/image6.png)
+
+![](public/readme/image7.png)
+
+![](public/readme/image8.png)
+
+![](public/readme/image9.png)
+
+![](public/readme/image10.png)
 ![][detail]
 
 
