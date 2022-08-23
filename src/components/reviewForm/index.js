@@ -123,7 +123,8 @@ const ReviewForm = ({ movie }) => {
           label="Author's name"
           name="author"
           autoFocus
-          inputRef={register({ required: "Author name required" })}
+
+
         />
         {errors.author && (
           <Typography variant="h6" component="p">
@@ -141,16 +142,8 @@ const ReviewForm = ({ movie }) => {
           id="content"
           multiline
           minRows={10}
-          inputRef={register({
-            required: "No review text",
-            minLength: { value: 10, message: "Review is too short" },
-          })}
         />
-        {errors.content && (
-          <Typography variant="h6" component="p">
-            {errors.content.message}
-          </Typography>
-        )}
+
         <TextField
           id="select-rating"
           select

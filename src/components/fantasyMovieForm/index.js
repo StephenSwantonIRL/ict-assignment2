@@ -98,31 +98,31 @@ const FantasyMovieForm = () => {
 
     return (
         <>
-            <Grid container className={classes.root}>
+            <Grid container className={classes.root} style={{paddingTop: 50}}>
                 <Grid item xs={12}>
-                    <Header title={"SignUp"}/>
+                    <Header title={"Create a Fantasy Movie"}/>
                 </Grid>
                 <Grid item container xs={12} spacing={5}>
-                    <Box component="div" className={classes.root}>
+                    <Box style={{margin: "auto", paddingTop: 20}}  component="div" className={classes.root}>
                         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-                            <input type="text" placeholder="Title" {...register("title", {required: true})} /> <br/>
-                            <select {...register("genre", {required: true})}>
-
+                            <input type="text" class="input is-primary" placeholder="Title" {...register("title", {required: true})} /> <br/>
+                            <select class="input is-primary" {...register("genre", {required: true})} placeholder="genre">
+                                <option>genre</option>
                                 {genres.map(genre => (
                                     <option key={genre.id} value={genre.id}>{genre.name}</option>
                                 ))}
                             </select>
-                            <textarea {...register("plot", {})} /><br/>
-                            <input type="datetime" placeholder="Release Date" {...register("releaseDate", {
+                            <textarea placeholder="plot" class="input is-primary" {...register("plot", {})} /><br/>
+                            <input class="input is-primary" type="datetime" placeholder="Release Date" {...register("releaseDate", {
                                 required: true,
                                 maxLength: 80
                             })} />
-                            <input type="search" placeholder="Cast" onChange={(e) => search(e.target.value)}/>
-                            <input type="submit"/>
+                            <input class="input is-primary" type="search" placeholder="Cast" onChange={(e) => search(e.target.value)}/>
+                            <input class="button is-primary"  type="submit"/>
                         </form>
                     </Box>
                 </Grid>
-                <div>Current Cast</div>
+                <div style={{ paddingTop: 20}} >Current Cast</div>
                 <div>{cast.map(actor => (<p key={actor.id}>{actor.name} <Button key={actor.id}
                                                                                 onClick={() => deleteFromCast(actor.id)}> Remove</Button>
                 </p>))}</div>

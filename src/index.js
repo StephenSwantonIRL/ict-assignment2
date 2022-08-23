@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import 'bulma/css/bulma.min.css';
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -43,8 +44,8 @@ const App = () => {
         <MoviesContextProvider>
           <SeriesContextProvider>
             <Routes>
-              <Route path="/list" element={<FantasyListPage/>} />
-              <Route path="/fantasy" element={<FantasyMovieForm/>} />
+              <Route path="/list" element={<ProtectedRoute><FantasyListPage/></ProtectedRoute>} />
+              <Route path="/fantasy" element={<ProtectedRoute><FantasyMovieForm/></ProtectedRoute>} />
               <Route path="/login" element={<LoginForm/>} />
               <Route path="/signup" element={<CreateUserForm/>} />
               <Route path="/tv" element={<SeriesPage/>} />

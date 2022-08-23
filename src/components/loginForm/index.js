@@ -1,4 +1,5 @@
 import React from "react";
+import 'bulma/css/bulma.min.css';
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {makeStyles} from "@material-ui/core/styles";
@@ -62,22 +63,19 @@ const LoginForm = (props) => {
 
     return (
 
-        <Grid container className={classes.root}>
+        <Grid container className={classes.root} style={{paddingTop: 50}}>
             <Grid item xs={12}>
-                <Header title={"SignUp"}/>
+                <Header  title={"Log In"}/>
             </Grid>
             <Grid item container xs={12} spacing={5}>
-                <Box component="div" className={classes.root}>
-                    <Typography component="h2" variant="h3">
-                        Log In
-                    </Typography>
+                <Box style={{margin: "auto", paddingTop: 20}} component="div" className={classes.root}>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <label>Email Address </label><input type="text" name="email"
+                        <label>Email Address </label><input class="input is-primary" type="text" name="email"
                                                             placeholder="Email" {...register("email", {})} /><br/>
-                        <label>Password </label><input type="password" name="password"
+                        <label>Password </label><input class="input is-primary" type="password" name="password"
                                                        placeholder="Password" {...register("password", {})} /><br/>
-                        <Box className={classes.buttons}>
-                            <Button className={classes.submit} type="submit"> Log In </Button>
+                        <Box style={{paddingTop: 10}}>
+                            <Button class="button is-primary" type="submit"> Log In </Button>
                         </Box>
                     </form>
                 </Box>
