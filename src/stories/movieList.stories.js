@@ -8,10 +8,9 @@ import Grid from "@material-ui/core/Grid";
 import MoviesContextProvider from "../contexts/moviesContext";
 
 export default {
-  title: "Home Page/MovieList",
+  title: "Movie List Page/MovieList",
   component: MovieList,
   decorators: [
-    (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
     (Story) => <MoviesContextProvider>{Story()}</MoviesContextProvider>,
   ],
 };

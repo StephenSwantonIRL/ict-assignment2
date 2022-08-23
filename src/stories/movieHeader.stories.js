@@ -7,9 +7,6 @@ import { action } from "@storybook/addon-actions";
 export default {
   title: "Movie Details Page/MovieHeader",
   component: MovieHeader,
-  decorators: [
-    (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
-  ],
 };
 
 export const Basic = () => <MovieHeader movie={SampleMovie} />;

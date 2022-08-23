@@ -17,12 +17,6 @@ const queryClient = new QueryClient({
 export default {
   title: "Home Page/FilterCard",
   component: FilterCard,
-  decorators: [
-    (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
-    (Story) => (
-      <QueryClientProvider client={queryClient}>{Story()}</QueryClientProvider>
-    ),
-  ],
 };
 
 export const Basic = () => {

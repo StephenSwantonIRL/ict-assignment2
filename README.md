@@ -1,91 +1,113 @@
-# moviesapp-ci-2021
 
 
+# ICT Skills 2 Assignment.
 
-## Getting started
+Name: Stephen Swanton
+## Overview.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+This project builds on the features developed in assignment 1 to extend the range of endpoints consumed by the movie client app so that end users can access information regarding:
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- Popular Actors, including movies in which they appear
+- TV series
+- Movies similar to individual movies
 
-## Add your files
+The filtering functionality was extended to include release date.
+Sorting functionality was also introduced to allow *ascending* and *descending* sort by *Title* and by *Release Date*
 
-- [ ] [Create](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+All sections feature extensive hyperlinking to allow the user to effectively navigate throughout the site.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/oconnordiarmuid/moviesapp-ci-2021.git
-git branch -M main
-git push -uf origin main
-```
+Routing features include  a mix of static and parameterized URLs and protected URLs
+A hapi-mongodb backend was created to provide user authentication for protected routes [code available in the following repository https://github.com/StephenSwantonIRL/movie-back-end] 
 
-## Integrate with your tools
+A *My Fantasy movies* feature was also partially implemented to permit logged in users to add create movies in the movies backend that capture:
 
-- [ ] [Set up project integrations](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/integrations/)
+- Title
+- Genre (using list provided by TMDB)
+- Release Date
+- Plot
+- Cast (searching the TMDB database to retrieve results, and allow users select cast members from matching actors)
 
-## Collaborate with your team
+The app relies on the react-query library to cache results and reduce unnecessary server queries.
 
-- [ ] [Invite team members and collaborators](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Automatically merge when pipeline succeeds](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+– Storybook support.
 
-## Test and Deploy
+## Setup requirements.
 
-Use the built-in continuous integration in GitLab.
+You must have Node version 16.8 or above installed to install this application. You also need to sign up for an account and API key on TMDB  (Details available here https://developers.themoviedb.org/3/getting-started/authentication)
 
-- [ ] [Get started with GitLab CI/CD](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/clusters/agent/)
+1. Clone the project repository to your local machine using the following command
+   `git clone https://github.com/StephenSwantonIRL/PlaceMarkAPI.git`
+2. Open a command prompt in the project folder.
+3. Run the following command `npm install `
+4. Create a `.env` file in the project root folder and populate the file with the following variables.
+   -- REACT_APP_TMDB_KEY=**yourTMDBapiKey**
+   -- FAST_REFRESH=false
+5. Run `npm run build`  to create a build version for the production environment.
+6. Your app is now ready to deploy on your hosting of choice. For further information on available options visit https://create-react-app.dev/docs/deployment/
 
-***
 
-# Editing this README
+## App Design.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://www.makeareadme.com/) for this template.
+### Routing/Navigation.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+[List the set of routes your app supports - only mention new instances if you expanded the Movies Fan app. State the view linked with each route.]
 
-## Name
-Choose a self-explaining name for your project.
+e.g.
++ /movies/:id - detailed information on a specific movie.
++ /movies/upcoming - lists movies soon to be shown in cinemas.
++ etc.
++ etc.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### Views/Pages.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+[ For each view in your app, show a screenshot and caption - only new/modified ones in the case of the Movies Fan app. If necessary, use multiple screenshots to cover a view's full capability.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+e.g.
+>Lists movies from the Discover endpoint. Filtering on title and genre attributes is supported.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+![][d1]
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+![][d2]
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+>Shows detailed information on a specific movie
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+![][detail]
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+### Component catalogue.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+[ Use the Storybook UI to highlight the new components for which you developed stories.]
+e.g.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+![][stories]
 
-## License
-For open source projects, say how it is licensed.
+## Caching.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+[ List the TMDB server state cached by the app. Include a screenshot(s) of the react-query dev tools to validate your list.]
+
+e.g.
++ Discover movies (pagination support)
++ Movie details
++ etc
++ etc
+
+![][caching]
+
+## Authentication.
+
+[Briefly state how you implemented authentication for the app, e.g. basic, Firebase, etc. Also, list the routes that are private/protected.]
+
+e.g.
++ /reviews/:id
++ /movies/favourites
+
+## Server-side persistence
+
+
+[ Specify the persistence
+platform your app uses (e.g. TMDB lists, Firestore) and itemize the data it persists.]
+
+## Additional features (if relevant),
+
+[Mention any additional user features of your app that may not be obvious from the previous sections, e.g. pagination, extended filtering/sorting, searching.]
 

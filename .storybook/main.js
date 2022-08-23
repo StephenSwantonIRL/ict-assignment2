@@ -4,5 +4,7 @@ module.exports = {
   ],
   "addons": [
     "@storybook/addon-links",
+    "storybook-addon-react-router-v6"
+
   ]
 }

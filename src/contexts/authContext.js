@@ -8,7 +8,7 @@ export const AuthContext = React.createContext(null);
 
 const AuthContextProvider = ({children}) => {
     const [user, setUser] = useState({});
-    const location = useLocation();
+
     const navigate = useNavigate();
 
     function storeUser(user){
