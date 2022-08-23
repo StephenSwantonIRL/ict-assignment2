@@ -18,7 +18,7 @@ Sorting functionality was also introduced to allow *ascending* and *descending* 
 All sections feature extensive hyperlinking to allow the user to effectively navigate throughout the site.
 
 Routing features include  a mix of static and parameterized URLs and protected URLs  
-A hapi-mongodb backend was created to provide user authentication for protected routes [code available in the following repository https://github.com/StephenSwantonIRL/movie-back-end] 
+A hapi-mongodb backend was created to provide user authentication for protected routes [code available in the following repository https://github.com/StephenSwantonIRL/ict-movie-backend] 
 
 A *My Fantasy movies* feature was also partially implemented to permit logged in users to add create movies in the movies backend that capture:
 
@@ -164,7 +164,7 @@ Protection is applied to the following routes.
 
 
 ## Server-side persistence
-Server side persistence is available for Users and Fantasy Movies created in the system via the hapi-mongo movies-app-backend [https://github.com/StephenSwantonIRL/movie-back-end]. Fields currently stored in the back end are:
+Server side persistence is available for Users and Fantasy Movies created in the system via the hapi-mongo movies-app-backend [https://github.com/StephenSwantonIRL/ict-movie-backend]. Fields currently stored in the back end are:
 
 **USER**
 - Email Address  - which also functions as the user's username
