@@ -70,44 +70,87 @@ e.g.
 > 
 
 ![The Log In Page](public/readme/image1.png) 
+> Fig. 1 Login  page 
 
 ![](public/readme/image2.png)
+> Fig. 2 Sign up Page
 
 ![](public/readme/image3.png)
+> Fig. 3 Create Fantasy Movie Page
+
 
 ![](public/readme/image4.png)
+> Fig. 4 List view of User's Fansty Movies
 
 ![](public/readme/image5.png)
+> Fig. 5 Example of Dropdown Menu
 
 ![](public/readme/image6.png)
+> Fig. 6 Page renders results of TV Series Discover Endpoint
 
 ![](public/readme/image7.png)
+> Fig. 7 Page renders details page for an individual TV series
 
 ![](public/readme/image8.png)
+> Fig. 8 Highlights addition of similar movies to Movie Detail Page
 
 ![](public/readme/image9.png)
+> Fig. 9 Page renders results of Popular People endpoint 
 
 ![](public/readme/image10.png)
-![][detail]
+> Fig. 10 Page renders details page for an actor
 
 
 ### Component catalogue.
 
-[ Use the Storybook UI to highlight the new components for which you developed stories.]  
-e.g.
+New Components added to the component library for which stories were created were:
 
-![][stories]
+SERIES DETAILS PAGE
+- SeriesCard
+![img_8.png](img_8.png)
 
+- SeriesDetails
+![img_9.png](img_9.png)
+
+
+SERIES LIST PAGE 
+- SeriesList
+![img_7.png](img_7.png)
+
+AUTHENTICATION
+- CreateUser
+![img_5.png](img_5.png)
+
+- LoginForm
+  ![img_4.png](img_4.png)
+
+FANTASY MOVIES
+- FantasyMovieForm
+![img_6.png](img_6.png)
+
+  
 ## Caching.
 
 In addition to the caching available in the assignment 1 version of the application the following have been implemented.
 
 - Discover TV Series
-- Individual TV Series Details
-- Popular Actor List
-- Actor Details
 
-![][caching]
+![img.png](img.png)
+
+
+- Individual TV Series Details
+
+![img_1.png](img_1.png)
+> Note caching of individual series
+
+- Popular Actor List
+
+![img_2.png](img_2.png)
+
+
+- Actor Details - including actor credits
+![img_3.png](img_3.png)
+
 
 ## Authentication.
 
@@ -140,5 +183,5 @@ JWT authentication is possible by enabling the JWT auth strategy on the back end
 
 
 ## Sorting
-The filterCard Component was updated to include a new sortOptions component. This renders renders a button enabling the user to select whether they would like to sort in ascending or descending order and a radio button selector to select which property to sort by. Currently the user can select to sort by either release date or by title. 
+The filterCard Component was updated to include a new sortOptions component. This renders a button enabling the user to select whether they would like to sort in ascending or descending order and a radio button selector to select which property to sort by. Currently the user can select to sort by either release date or by title. 
  
